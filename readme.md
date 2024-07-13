@@ -5,7 +5,7 @@
 </p>
 
 <p style="text-align: center">
-    <a href="https://github.com/mougrim/fast-uuid"><img src="https://img.shields.io/badge/source-mougrim/fast-uuid-blue.svg?style=flat-square" alt="Source Code"></a>
+    <a href="https://github.com/mougrim/fast-uuid"><img src="https://img.shields.io/badge/source-mougrim/fast--uuid-blue.svg?style=flat-square" alt="Source Code"></a>
     <a href="https://packagist.org/packages/mougrim/fast-uuid"><img src="https://img.shields.io/packagist/v/mougrim/fast-uuid.svg?style=flat-square&label=release" alt="Download Package"></a>
     <a href="https://php.net"><img src="https://img.shields.io/packagist/php-v/mougrim/fast-uuid.svg?style=flat-square&colorB=%238892BF" alt="PHP Programming Language"></a>
     <a href="https://github.com/mougrim/fast-uuid/blob/main/license.md"><img src="https://img.shields.io/packagist/l/mougrim/fast-uuid.svg?style=flat-square&colorB=darkcyan" alt="Read License"></a>
