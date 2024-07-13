@@ -20,6 +20,7 @@
         }
     ],
     "require": {
+        "php": "^8.2",
         "ramsey/uuid": "^4.7"
     },
     "require-dev": {
