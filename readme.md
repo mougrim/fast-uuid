@@ -272,7 +272,9 @@ Transcript:
 - `benchLazy*` is `mougrim/fast-uuid` string-based realization with lazy initialization (lazy initialization can't be bytes-based)
 
 As you see, generation isn't optimized, but if needed you can make a MR 🙂
+
 If you use only `fromString` and `toString` conversions, and you don't need DI and custom UUID factory, `ramsey/uuid` will be optimal for you.
+
 In any other cases, it is better to use `mougrim/fast-uuid` with or without lazy initialization.
 
 ## Restrictions
