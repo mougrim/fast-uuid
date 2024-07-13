@@ -14,6 +14,7 @@ use Ramsey\Uuid\Type\Integer as IntegerObject;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidFactory;
 use Ramsey\Uuid\UuidFactoryInterface;
+use Ramsey\Uuid\UuidInterface;
 use Ramsey\Uuid\Validator\ValidatorInterface;
 use function hex2bin;
 use function str_pad;
@@ -31,7 +32,7 @@ readonly class FastUuidFactory implements UuidFactoryInterface
     ) {
     }
 
-    public function fromBytes(string $bytes): FastBytesUuid
+    public function fromBytes(string $bytes): UuidInterface
     {
         $fields = new FastBytesFields($bytes);
 
@@ -48,7 +49,7 @@ readonly class FastUuidFactory implements UuidFactoryInterface
         DateTimeInterface $dateTime,
         ?Hexadecimal $node = null,
         ?int $clockSeq = null
-    ): FastBytesUuid {
+    ): UuidInterface {
         $uuid = $this->uuidFactory->fromDateTime($dateTime, $node, $clockSeq);
 
         return $this->fromBytes($uuid->getBytes());
@@ -57,12 +58,12 @@ readonly class FastUuidFactory implements UuidFactoryInterface
     /**
      * @psalm-pure
      */
-    public function fromHexadecimal(Hexadecimal $hex): FastBytesUuid
+    public function fromHexadecimal(Hexadecimal $hex): UuidInterface
     {
         return $this->fromBytes(hex2bin($hex->__toString()));
     }
 
-    public function fromInteger(string $integer): FastBytesUuid
+    public function fromInteger(string $integer): UuidInterface
     {
         $hex = $this->uuidFactory->getNumberConverter()->toHex($integer);
         $hex = str_pad($hex, 32, '0', STR_PAD_LEFT);
@@ -70,7 +71,7 @@ readonly class FastUuidFactory implements UuidFactoryInterface
         return $this->fromBytes(hex2bin($hex));
     }
 
-    public function fromString(string $uuid): FastStringUuid
+    public function fromString(string $uuid): UuidInterface
     {
         $fields = new FastStringFields($uuid);
 
@@ -88,7 +89,7 @@ readonly class FastUuidFactory implements UuidFactoryInterface
         return $this->uuidFactory->getValidator();
     }
 
-    public function uuid1($node = null, ?int $clockSeq = null): FastBytesUuid
+    public function uuid1($node = null, ?int $clockSeq = null): UuidInterface
     {
         $uuid = $this->uuidFactory->uuid1($node, $clockSeq);
 
@@ -100,34 +101,34 @@ readonly class FastUuidFactory implements UuidFactoryInterface
         ?IntegerObject $localIdentifier = null,
         ?Hexadecimal $node = null,
         ?int $clockSeq = null,
-    ): FastBytesUuid {
+    ): UuidInterface {
         $uuid = $this->uuidFactory->uuid2($localDomain, $localIdentifier, $node, $clockSeq);
 
         return $this->fromBytes($uuid->getBytes());
     }
 
-    public function uuid3($ns, string $name): FastBytesUuid
+    public function uuid3($ns, string $name): UuidInterface
     {
         $uuid = $this->uuidFactory->uuid3($ns, $name);
 
         return $this->fromBytes($uuid->getBytes());
     }
 
-    public function uuid4(): FastBytesUuid
+    public function uuid4(): UuidInterface
     {
         $uuid = $this->uuidFactory->uuid4();
 
         return $this->fromBytes($uuid->getBytes());
     }
 
-    public function uuid5($ns, string $name): FastBytesUuid
+    public function uuid5($ns, string $name): UuidInterface
     {
         $uuid = $this->uuidFactory->uuid5($ns, $name);
 
         return $this->fromBytes($uuid->getBytes());
     }
 
-    public function uuid6(?Hexadecimal $node = null, ?int $clockSeq = null): FastBytesUuid
+    public function uuid6(?Hexadecimal $node = null, ?int $clockSeq = null): UuidInterface
     {
         $uuid = $this->uuidFactory->uuid6($node, $clockSeq);
 
@@ -142,10 +143,10 @@ readonly class FastUuidFactory implements UuidFactoryInterface
      *     to create the version 7 UUID. If not provided, the UUID is generated
      *     using the current date/time.
      *
-     * @return FastBytesUuid A FastBytesUuid instance that represents a
+     * @return UuidInterface A FastBytesUuid instance that represents a
      *     version 7 UUID
      */
-    public function uuid7(?DateTimeInterface $dateTime = null): FastBytesUuid
+    public function uuid7(?DateTimeInterface $dateTime = null): UuidInterface
     {
         $uuid = $this->uuidFactory->uuid7($dateTime);
 
@@ -165,10 +166,10 @@ readonly class FastUuidFactory implements UuidFactoryInterface
      *     field, and bits 64 and 65 will be replaced with the UUID variant. You
      *     MUST NOT rely on these bits for your application needs.
      *
-     * @return FastBytesUuid A FastBytesUuid instance that represents a
+     * @return UuidInterface A FastBytesUuid instance that represents a
      *     version 8 UUID
      */
-    public function uuid8(string $bytes): FastBytesUuid
+    public function uuid8(string $bytes): UuidInterface
     {
         $uuid = $this->uuidFactory->uuid8($bytes);
 

@@ -82,6 +82,7 @@ class FastBytesUuid implements UuidInterface
         $this->string = null;
         $this->dateTime = null;
 
+        /** @var FastBytesUuid $uuid */
         $uuid = FastUuidFactoryFactory::getFastUuidFactory()->fromBytes($data);
 
         $this->codec = $uuid->codec;

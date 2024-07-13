@@ -81,6 +81,7 @@ class FastStringUuid implements UuidInterface
         $this->integer = null;
         $this->dateTime = null;
 
+        /** @var FastStringUuid $uuid */
         $uuid = FastUuidFactoryFactory::getFastUuidFactory()->fromString($data);
 
         $this->numberConverter = $uuid->numberConverter;
